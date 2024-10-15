@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../App.css";
-import { getCar, updateCar, deleteCar } from "../services/CarsAPI"; // Import the required services
+import { getCar, updateCar, deleteCar } from "../services/CarsAPI";
 
 const EditCar = () => {
-  const { id } = useParams(); // Get car id from URL params
+  const { id } = useParams();
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [wheelType, setWheelType] = useState("");
   const [usageType, setUsageType] = useState("");
+  const [basePrice, setBasePrice] = useState(20000);
+  const [totalPrice, setTotalPrice] = useState(basePrice);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch the car data when the component mounts
+  const colorPrices = {
+    Black: 1000,
+    Blue: 1200,
+    Red: 1500,
+    Pink: 1300,
+    Green: 1100,
+    White: 900,
+  };
+
+  const wheelTypePrices = {
+    Alloy: 3000,
+    Steel: 2000,
+    Chrome: 4000,
+  };
+
   useEffect(() => {
     const fetchCarData = async () => {
       try {
@@ -21,6 +37,7 @@ const EditCar = () => {
         setColor(carData.color);
         setWheelType(carData.wheel_type);
         setUsageType(carData.usage_type);
+        setTotalPrice(carData.price);
       } catch (error) {
         console.error("Error fetching car:", error);
       }
@@ -28,7 +45,12 @@ const EditCar = () => {
     fetchCarData();
   }, [id]);
 
-  // Handle form submission for updating the car
+  useEffect(() => {
+    const colorPrice = color ? colorPrices[color] : 0;
+    const wheelPrice = wheelType ? wheelTypePrices[wheelType] : 0;
+    setTotalPrice(basePrice + colorPrice + wheelPrice);
+  }, [color, wheelType, basePrice]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,28 +62,27 @@ const EditCar = () => {
         color,
         wheel_type: wheelType,
         usage_type: usageType,
+        price: totalPrice,
       };
 
       try {
-        await updateCar(id, updatedCar); // Call the update API
-        navigate("/customcars"); // Redirect after update
+        await updateCar(id, updatedCar);
+        navigate("/customcars");
       } catch (error) {
         console.error("Error updating car", error);
       }
     }
   };
 
-  // Handle car deletion
   const handleDelete = async () => {
     try {
-      await deleteCar(id); // Call the delete API
-      navigate("/customcars"); // Redirect after deletion
+      await deleteCar(id);
+      navigate("/customcars");
     } catch (error) {
       console.error("Error deleting car", error);
     }
   };
 
-  // Close the modal
   const closeModal = () => {
     setShowModal(false);
   };
@@ -140,6 +161,12 @@ const EditCar = () => {
           {usageType && (
             <span className="selected-option">Selected: {usageType}</span>
           )}
+        </div>
+
+        <div className="form-group">
+          <label>
+            Total Price: <span>${totalPrice}</span>{" "}
+          </label>
         </div>
 
         <button type="submit" className="create-button">

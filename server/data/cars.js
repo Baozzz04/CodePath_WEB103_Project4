@@ -5,6 +5,7 @@ const carData = [
     color: "Red",
     wheel_type: "Alloy",
     usage_type: "Personal",
+    price: 25000,
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const carData = [
     color: "Blue",
     wheel_type: "Steel",
     usage_type: "Commercial",
+    price: 22000,
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const carData = [
     color: "Black",
     wheel_type: "Chrome",
     usage_type: "Collector",
+    price: 45000,
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ const carData = [
     color: "White",
     wheel_type: "Carbon Fiber",
     usage_type: "Personal",
+    price: 80000,
   },
 ];
 

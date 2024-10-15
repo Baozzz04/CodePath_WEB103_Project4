@@ -19,7 +19,7 @@ The following **required** functionality is completed:
 - [x] **On selecting each option, the displayed visual icon for the `CustomCar` updates to match the option the user chose**
 - [x] **The user can submit their choices to save the car to the list of created `CustomCar`**
 - [x] **If a user submits a feature combo that is impossible, they should receive an appropriate error message and the item should not be saved to the database**
-- [ ] **The app displays the total price of all features**
+- [x] **The app displays the total price of all features**
 - [x] **Users can view a list of all submitted `CustomCar`**
 - [x] **Users can edit or delete a submitted `CustomCar` from the list view of submitted `CustomCar`**
 - [x] **Users can update or delete `CustomCar` that have been created from the detail page**
@@ -35,6 +35,8 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented required features:
+
+https://www.loom.com/share/4df377d46db94246b55e0814cfe031f9?sid=952d0361-2df7-45cf-8feb-0768e8901559
 
 ## Notes
 

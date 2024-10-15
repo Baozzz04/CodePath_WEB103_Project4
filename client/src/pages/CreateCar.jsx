@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import { createCar } from "../services/CarsAPI";
@@ -9,7 +9,31 @@ const CreateCar = () => {
   const [wheelType, setWheelType] = useState("");
   const [usageType, setUsageType] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [basePrice, setBasePrice] = useState(20000);
+  const [totalPrice, setTotalPrice] = useState(basePrice);
+
   const navigate = useNavigate();
+
+  const colorPrices = {
+    Black: 1000,
+    Blue: 1200,
+    Red: 1500,
+    Pink: 1300,
+    Green: 1100,
+    White: 900,
+  };
+
+  const wheelTypePrices = {
+    Alloy: 3000,
+    Steel: 2000,
+    Chrome: 4000,
+  };
+
+  useEffect(() => {
+    const colorPrice = color ? colorPrices[color] : 0;
+    const wheelPrice = wheelType ? wheelTypePrices[wheelType] : 0;
+    setTotalPrice(basePrice + colorPrice + wheelPrice);
+  }, [color, wheelType, basePrice]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +45,7 @@ const CreateCar = () => {
         color,
         wheel_type: wheelType,
         usage_type: usageType,
+        price: totalPrice,
       };
       try {
         await createCar(newCar);
@@ -109,6 +134,12 @@ const CreateCar = () => {
           {usageType && (
             <span className="selected-option">Selected: {usageType}</span>
           )}
+        </div>
+
+        <div className="form-group">
+          <label>
+            Total Price: <span>${totalPrice}</span>{" "}
+          </label>
         </div>
 
         <button type="submit" className="create-button">

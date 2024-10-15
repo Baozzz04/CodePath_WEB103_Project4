@@ -11,7 +11,8 @@ const createTable = async () => {
             name VARCHAR(255) NOT NULL,
             color VARCHAR(255) NOT NULL,
             wheel_type VARCHAR(255) NOT NULL,
-            usage_type VARCHAR(255) NOT NULL
+            usage_type VARCHAR(255) NOT NULL, 
+            price DECIMAL(10, 2) NOT NULL
         );
     `;
 
@@ -30,9 +31,15 @@ const seedTable = async () => {
 
   carData.forEach((car) => {
     const insertQuery = {
-      text: "INSERT INTO cars (name, color, wheel_type, usage_type) VALUES ($1, $2, $3, $4)",
+      text: "INSERT INTO cars (name, color, wheel_type, usage_type, price) VALUES ($1, $2, $3, $4, $5)",
     };
-    const values = [car.name, car.color, car.wheel_type, car.usage_type];
+    const values = [
+      car.name,
+      car.color,
+      car.wheel_type,
+      car.usage_type,
+      car.price,
+    ];
     pool.query(insertQuery, values, (err, res) => {
       if (err) {
         console.error("⚠️ Error inserting location", err);

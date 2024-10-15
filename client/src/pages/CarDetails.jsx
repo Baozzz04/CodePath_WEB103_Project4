@@ -1,57 +1,40 @@
-// import React from 'react'
-// import '../App.css'
-
-// const CarDetails = () => {
-
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// }
-
-// export default CarDetails
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCar, deleteCar } from "../services/CarsAPI"; // Import the API functions
+import { getCar, deleteCar } from "../services/CarsAPI";
 import "../App.css";
 
 const CarDetails = () => {
-  const { id } = useParams(); // Get the car id from the URL
-  const [car, setCar] = useState(null); // State to store car details
-  const [loading, setLoading] = useState(true); // Loading state
+  const { id } = useParams();
+  const [car, setCar] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Fetch the car details on component mount
   useEffect(() => {
     const fetchCar = async () => {
       try {
-        const carData = await getCar(id); // Fetch car data using the id
-        setCar(carData); // Set the fetched car data
+        const carData = await getCar(id);
+        setCar(carData);
       } catch (error) {
         console.error("Failed to fetch car:", error);
       } finally {
-        setLoading(false); // Set loading to false after data is fetched
+        setLoading(false);
       }
     };
 
     fetchCar();
   }, [id]);
 
-  // Handle car deletion
   const handleDelete = async () => {
     try {
-      await deleteCar(id); // Call the delete API
-      navigate("/customcars"); // Redirect to custom cars page after deletion
+      await deleteCar(id);
+      navigate("/customcars");
     } catch (error) {
       console.error("Failed to delete car:", error);
     }
   };
 
-  // Handle edit button click
   const handleEdit = () => {
-    navigate(`/edit/${id}`); // Navigate to the edit page
+    navigate(`/edit/${id}`);
   };
 
   if (loading) {
@@ -73,6 +56,9 @@ const CarDetails = () => {
       </p>
       <p>
         <strong>Usage Type:</strong> {car.usage_type}
+      </p>
+      <p>
+        <strong>Price:</strong> ${car.price}
       </p>
 
       <div className="car-actions">

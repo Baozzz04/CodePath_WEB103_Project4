@@ -1,46 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllCars, deleteCar } from "../services/CarsAPI"; // Import the API calls
-import "../App.css"; // Assuming your styles are in App.css or a similar file
+import { getAllCars, deleteCar } from "../services/CarsAPI";
+import "../App.css";
 
 const ViewCars = () => {
-  const [cars, setCars] = useState([]); // State to store cars
-  const [loading, setLoading] = useState(true); // Loading state
-  const navigate = useNavigate(); // For navigation
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // Fetch the cars when the component is mounted
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const carData = await getAllCars(); // Fetch the car data
-        setCars(carData); // Set the car data in state
+        const carData = await getAllCars();
+        setCars(carData);
       } catch (error) {
         console.error("Failed to fetch cars:", error);
       } finally {
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       }
     };
 
-    fetchCars(); // Call the fetch function
+    fetchCars();
   }, []);
 
-  // Delete a car and redirect to home page
   const handleDelete = async (id) => {
     try {
-      await deleteCar(id); // Call delete API
-      setCars(cars.filter((car) => car.id !== id)); // Remove the deleted car from state
-      navigate("/"); // Redirect to the home page after deletion
+      await deleteCar(id);
+      setCars(cars.filter((car) => car.id !== id));
+      navigate("/");
     } catch (error) {
       console.error("Failed to delete car:", error);
     }
   };
 
-  // If still loading, show a loading message
   if (loading) {
     return <div>Loading cars...</div>;
   }
 
-  // If no cars, show a message
   if (cars.length === 0) {
     return <div>No cars available.</div>;
   }
@@ -60,13 +56,16 @@ const ViewCars = () => {
               <p>
                 🎨 <strong>Color:</strong> {car.color}
               </p>
-            </div>
-            <div className="car-right">
               <p>
                 🛞 <strong>Wheel Type:</strong> {car.wheel_type}
               </p>
+            </div>
+            <div className="car-right">
               <p>
                 🔧 <strong>Usage Type:</strong> {car.usage_type}
+              </p>
+              <p>
+                💵 <strong>Price:</strong> ${car.price}
               </p>
             </div>
           </div>
