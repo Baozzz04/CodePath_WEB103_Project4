@@ -10,3 +10,218 @@
     overflow-x: hidden;
     padding-bottom: 50px;
 }
+
+.car-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.car-item {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    position: relative;
+}
+
+.car-header {
+    display: flex;
+    margin-left: 20px;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.car-icon {
+    font-size: 24px;
+}
+
+.car-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.car-left, .car-right {
+    width: 45%;
+}
+
+.car-left p, .car-right p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.car-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.details-button, .delete-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.details-button {
+    background-color: #a00;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.create-car-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.create-car-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input, select {
+    padding: 10px;
+    font-size: 16px;
+    /* margin-top: 5px; */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.selected-option {
+    margin-top: -16px;
+    font-size: 14px;
+    color: #007bff;
+}
+
+.create-button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.create-button:hover {
+    background-color: #218838;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: black;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    padding: 10px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #d32f2f;
+}
+
+.car-details-container {
+    padding: 20px;
+    background-color: black;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.car-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.edit-button, .delete-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
